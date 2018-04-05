@@ -1,5 +1,5 @@
 
-public class City {
+public abstract class Structure {
 /*
  * hp
  * position
