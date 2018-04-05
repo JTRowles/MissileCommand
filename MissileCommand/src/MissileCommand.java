@@ -1,8 +1,8 @@
 import javax.swing.*;
 
-public class Game extends JPanel{
+public class MissileCommand extends JPanel{
 	JFrame frame = new JFrame();
-	Game(){
+	MissileCommand(){
 		frame.setContentPane(this);
 		frame.setSize(600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -10,6 +10,6 @@ public class Game extends JPanel{
 	}
 	
 	public static void main(String[] args){
-		new Game();
+		new MissileCommand();
 	}
 }
