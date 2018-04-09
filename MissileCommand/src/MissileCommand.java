@@ -5,6 +5,7 @@ public class MissileCommand extends JPanel{
 	MissileCommand(){
 		frame.setContentPane(this);
 		frame.setSize(600, 600);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
