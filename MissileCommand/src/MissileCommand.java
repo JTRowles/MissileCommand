@@ -5,6 +5,8 @@ import java.lang.Math;
 import javax.swing.*;
 
 public class MissileCommand extends JPanel{
+	int xDirection = 0;
+	int yDirection = 0;
 	int x = 0;
 	int y = 0;
 	JFrame frame = new JFrame("Gay Command");
@@ -23,9 +25,29 @@ public class MissileCommand extends JPanel{
 		g.drawOval(x, y, 50, 50);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 64));
 		g.setColor(new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255)));
-		g.drawString("YOUR MOM GAY", (int)(Math.random() * this.getWidth()), (int)(Math.random() * this.getHeight()));
-		x++;
-		y++;
+		g.drawString("YOUR MOM GAY", (int)(Math.random() * (this.getWidth() + 75) - 75), (int)(Math.random() * this.getHeight()));
+		if (xDirection == 0) {
+			x++;
+		} else {
+			x--;
+		}
+		if (yDirection == 0) {
+			y++;
+		} else {
+			y--;
+		}
+		if (x >= this.getWidth()) {
+			xDirection = 1;
+		}
+		if (x <= 0) {
+			xDirection = 0;
+		}
+		if (y >= this.getHeight()) {
+			yDirection = 1;
+		}
+		if (y <= 0) {
+			yDirection = 0;
+		}
 		this.repaint();
 	}
 	
