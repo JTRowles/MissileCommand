@@ -19,4 +19,5 @@ public abstract class MobileEntity {
 	public double getYVel() {
 		return yVel;
 	}
+	
 }
