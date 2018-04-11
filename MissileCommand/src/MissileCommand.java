@@ -1,6 +1,7 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
-
+import java.lang.Math;
 import javax.swing.*;
 
 public class MissileCommand extends JPanel{
@@ -20,7 +21,9 @@ public class MissileCommand extends JPanel{
 		g.clearRect(x, y, 50, 50);
 		g.setColor(Color.pink);
 		g.drawOval(x, y, 50, 50);
-		
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 64));
+		g.setColor(new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255)));
+		g.drawString("YOUR MOM GAY", (int)(Math.random() * this.getWidth()), (int)(Math.random() * this.getHeight()));
 		x++;
 		y++;
 		this.repaint();
