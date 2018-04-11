@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 public class MissileCommand extends JPanel{
-	JFrame frame = new JFrame();
+	JFrame frame = new JFrame("Gay Command");
 	MissileCommand(){
 		frame.setContentPane(this);
 		frame.setSize(600, 600);
