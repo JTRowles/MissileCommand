@@ -7,6 +7,7 @@ public class GameState {
 	int[] missilesLeft;
 	public final int START_MISSILES = 15;
 	private int level;
+	MissileCommand display;
 	
 	GameState() {
 		level = 0;
