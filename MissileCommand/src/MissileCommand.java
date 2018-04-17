@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.image.*;
 public class MissileCommand extends JPanel{
 	JFrame frame = new JFrame("Gay Command");
+	
 	MissileCommand(){
 		
 	}
