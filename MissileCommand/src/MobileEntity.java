@@ -1,4 +1,3 @@
-
 public abstract class MobileEntity {
 
 	int x, y;
