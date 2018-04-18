@@ -23,7 +23,6 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		frame.repaint();
 		this.setBackground(Color.BLACK);
 		addMouseListener(this);
-		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -40,7 +39,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println(this.getSize());
+	
 	}
 	
 	@Override
