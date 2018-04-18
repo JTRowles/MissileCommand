@@ -12,14 +12,6 @@ public class GameState {
 	GameState() {
 		level = 0;
 		mobs = new ArrayList<MobileEntity>();
-		missilesLeft = new int[3];
-		missilesLeft[0] = START_MISSILES;
-		missilesLeft[1] = START_MISSILES;
-		missilesLeft[2] = START_MISSILES;
-		buildings = new boolean[6];
-		for (int i = 0; i < 6; i++) {
-			buildings[i] = true;
-		}
 		startLevel();
 	}
 	
@@ -36,5 +28,13 @@ public class GameState {
 	
 	public ArrayList<MobileEntity> getMobs() {
 		return mobs;
+	}
+	
+	public void destroyBuilding(int index) {
+		buildings[index] = false;
+	}
+	
+	public void destroyLauncher(int index) {
+		missilesLeft[index] = 0;
 	}
 }
