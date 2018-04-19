@@ -32,6 +32,13 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	                                                                                                                     
 	public void paintComponent(Graphics g) {
 		g.drawImage(backGround, 0, 0, null);
+		if(x < 533){
+			
+		}else if(x < 166){
+			
+		}else{
+			
+		}
 		
 	}
 	public static void main(String[] args){
