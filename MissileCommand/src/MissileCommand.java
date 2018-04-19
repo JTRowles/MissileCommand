@@ -14,7 +14,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	
 	MissileCommand(){
 		try {
-			 backGround = ImageIO.read(new File("Z:\\git\\MissileCommand\\MissileCommand\\Resources\\BET.png"));
+			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
