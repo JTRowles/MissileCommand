@@ -5,7 +5,7 @@ public abstract class MobileEntity {
 
 	BufferedImage sprite;
 	int x, y;
-	double xVel, yVel;
+	int xVel, yVel;
 	
 	public int getX() {
 		return x;
@@ -15,14 +15,18 @@ public abstract class MobileEntity {
 		return y;
 	}
 	
-	public double getXVel() {
+	public int getXVel() {
 		return xVel;
 	}
 	
-	public double getYVel() {
+	public int getYVel() {
 		return yVel;
 	}
 	
+	public void updatePos() {
+		x = x + xVel;
+		y = y + yVel;
+	}
 	public void setSprite(String path) {
 		try {
 			sprite = ImageIO.read(new File(path));
