@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -10,7 +9,8 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	BufferedImage backGround;
 	JFrame frame = new JFrame("Gay Command");
 	Timer update;
-	
+
+	int x, y;
 	MissileCommand(){
 		try {
 			 backGround = ImageIO.read(new File("Z:\\git\\MissileCommand\\MissileCommand\\Resources\\BET.png"));
@@ -27,11 +27,11 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		addMouseListener(this);
 		update = new Timer(1000/30, null);
 		update.stop();
-		
 	}
-	
+	                                                                                                                     
 	public void paintComponent(Graphics g) {
 		g.drawImage(backGround, 0, 0, null);
+		
 	}
 	public static void main(String[] args){
 		new MissileCommand();
@@ -44,7 +44,11 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	
+		System.out.println(this.getSize());
+		PointerInfo a = MouseInfo.getPointerInfo();
+		Point b = a.getLocation();
+		x = (int) b.getX();
+		y = (int) b.getY();
 	}
 	
 	@Override

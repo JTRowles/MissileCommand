@@ -11,6 +11,7 @@ public class GameState {
 	
 	GameState() {
 		level = 0;
+		buildings = new boolean[6];
 		mobs = new ArrayList<MobileEntity>();
 		startLevel();
 	}
