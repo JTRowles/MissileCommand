@@ -39,7 +39,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		}else{
 			
 		}
-		
+	
 	}
 	public static void main(String[] args){
 		new MissileCommand();
