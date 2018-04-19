@@ -9,8 +9,9 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	BufferedImage backGround;
 	JFrame frame = new JFrame("Gay Command");
 	Timer update;
-
+	GameState state;
 	int x, y;
+	
 	MissileCommand(){
 		try {
 			 backGround = ImageIO.read(new File("Z:\\git\\MissileCommand\\MissileCommand\\Resources\\BET.png"));
@@ -51,6 +52,16 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		y = (int) b.getY();
 	}
 	
+	class updater implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			for (MobileEntity ob : state.getMobs()) {
+				
+			}
+		}
+		
+	}
 	@Override
 	public void mouseDragged(MouseEvent arg0) {}
 	@Override
