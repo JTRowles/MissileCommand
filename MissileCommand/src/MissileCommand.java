@@ -9,6 +9,8 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	
 	BufferedImage backGround;
 	JFrame frame = new JFrame("Gay Command");
+	Timer update;
+	
 	MissileCommand(){
 		try {
 			 backGround = ImageIO.read(new File("Z:\\git\\MissileCommand\\MissileCommand\\Resources\\BET.png"));
@@ -23,6 +25,9 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		frame.repaint();
 		this.setBackground(Color.BLACK);
 		addMouseListener(this);
+		update = new Timer(1000/30, null);
+		update.stop();
+		
 	}
 	
 	public void paintComponent(Graphics g) {
