@@ -30,4 +30,8 @@ public abstract class MobileEntity {
 			e.printStackTrace();
 		}
 	}
+	
+	public BufferedImage getSprite() {
+		return sprite;
+	}
 }
