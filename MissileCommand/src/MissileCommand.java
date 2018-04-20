@@ -28,6 +28,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		addMouseListener(this);
 		update = new Timer(1000/30, null);
 		update.stop();
+		System.out.println(this.getSize());
 	}
 	                                                                                                                     
 	public void paintComponent(Graphics g) {
