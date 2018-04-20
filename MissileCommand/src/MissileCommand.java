@@ -6,18 +6,21 @@ import javax.imageio.*;
 import java.io.*;
 public class MissileCommand extends JPanel implements MouseListener, MouseMotionListener {
 	
-	BufferedImage backGround;
+	BufferedImage backGround, title;
 	JFrame frame = new JFrame("Gay Command");
 	Timer update;
 	GameState state;
 	int x, y;
+	boolean inRound;
 	
 	MissileCommand(){
 		try {
 			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
+			 title = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		inRound = false;
 		frame.setContentPane(this);
 		frame.setSize(600, 600);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -32,15 +35,9 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	}
 	                                                                                                                     
 	public void paintComponent(Graphics g) {
-		g.drawImage(backGround, 0, 0, null);
-		if(x < 533){
-			
-		}else if(x < 1066){
-			
-		}else{
-			
+		if (!inRound) {
+			g.drawImage(title, 0, 0, null);
 		}
-	
 	}
 	public static void main(String[] args){
 		new MissileCommand();
@@ -53,17 +50,34 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println(this.getSize());
-		PointerInfo a = MouseInfo.getPointerInfo();
-		Point b = a.getLocation();
-		x = (int) b.getX();
-		y = (int) b.getY();
+		if (inRound) {
+			PointerInfo a = MouseInfo.getPointerInfo();
+			Point b = a.getLocation();
+			x = (int) b.getX();
+			y = (int) b.getY();
+			if(x < 533){
+
+			}else if(x < 1066){
+
+			}else{
+
+			}
+		} else {
+			if (e.getX() >= 510 && e.getX() <= 1106 && e.getY() >= 510 && e.getY() <= 808) {
+				state = new GameState();
+				state.startLevel();
+				update.addActionListener(new updater());
+				update.start();
+				inRound = true;
+			}
+		}
 	}
 	
 	class updater implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			getGraphics().drawImage(backGround, 0, 0, null);
 			for (MobileEntity ob : state.getMobs()) {
 				ob.updatePos();
 				getGraphics().drawImage(ob.getSprite(), ob.getX(), ob.getY(), null);

@@ -16,7 +16,7 @@ public class GameState {
 		startLevel();
 	}
 	
-	private void startLevel() {
+	public void startLevel() {
 		mobs.clear();
 		level++;
 		missilesLeft[0] = START_MISSILES;
