@@ -7,6 +7,12 @@ public abstract class MobileEntity {
 	int x, y;
 	int xVel, yVel;
 	
+	MobileEntity(int startX, int startY, int xVelocity, int yVelocity) {
+		x = startX;
+		y = startY;
+		xVel = xVelocity;
+		yVel = yVelocity;
+	}
 	public int getX() {
 		return x;
 	}

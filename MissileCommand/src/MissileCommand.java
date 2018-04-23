@@ -78,6 +78,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			getGraphics().drawImage(backGround, 0, 0, null);
+			state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, (int)(Math.random()*4) - 2, 1, 0));
 			for (MobileEntity ob : state.getMobs()) {
 				ob.updatePos();
 				getGraphics().drawImage(ob.getSprite(), ob.getX(), ob.getY(), null);
