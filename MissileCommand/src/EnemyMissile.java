@@ -1,9 +1,12 @@
 
 public class EnemyMissile extends MobileEntity {
 
-	EnemyMissile(int startX, int startY, int xVel, int yVel, int destination) {
-		super(startX, startY, xVel, yVel);
+	public static final int base1x = 113, base1y = 611;
+	
+	EnemyMissile(int startX, int startY, int destination) {
+		super(startX, startY, (base1x - startX)/(base1y - startY), 1);
 		setSprite("Z:\\git\\GayCommand\\MissileCommand\\Resources\\rock.png");
+		
 	}
 	
 }
