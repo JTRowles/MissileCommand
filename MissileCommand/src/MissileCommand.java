@@ -75,14 +75,10 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	
 	class updater implements ActionListener {
 
-		long frames = 0;
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frames++;
 			getGraphics().drawImage(backGround, 0, 0, null);
-			if (frames % 15 == 0) {
-				state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, 0));
-			}
+			state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, 0));
 			for (MobileEntity ob : state.getMobs()) {
 				ob.updatePos();
 				getGraphics().drawImage(ob.getSprite(), ob.getX(), ob.getY(), null);
