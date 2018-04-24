@@ -4,35 +4,22 @@ import java.io.*;
 public abstract class MobileEntity {
 
 	BufferedImage sprite;
-	int x, y;
-	int xVel, yVel;
+	double x, y;
 	
-	MobileEntity(int startX, int startY, int xVelocity, int yVelocity) {
+	MobileEntity(double startX, double startY) {
 		x = startX;
 		y = startY;
-		xVel = xVelocity;
-		yVel = yVelocity;
 	}
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 	
-	public int getXVel() {
-		return xVel;
-	}
+	abstract public void updatePos();
 	
-	public int getYVel() {
-		return yVel;
-	}
-	
-	public void updatePos() {
-		x = x + xVel;
-		y = y + yVel;
-	}
 	public void setSprite(String path) {
 		try {
 			sprite = ImageIO.read(new File(path));

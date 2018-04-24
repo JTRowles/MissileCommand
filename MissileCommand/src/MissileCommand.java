@@ -15,8 +15,8 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	
 	MissileCommand(){
 		try {
-			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
-			 title = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
+			 backGround = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
+			 title = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -75,13 +75,17 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	
 	class updater implements ActionListener {
 
+		long frames = 0;
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			frames++;
 			getGraphics().drawImage(backGround, 0, 0, null);
-			state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, 0));
+			if (frames % 15 == 0) {
+				state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, 0));
+			}
 			for (MobileEntity ob : state.getMobs()) {
 				ob.updatePos();
-				getGraphics().drawImage(ob.getSprite(), ob.getX(), ob.getY(), null);
+				getGraphics().drawImage(ob.getSprite(), (int)(ob.getX()), (int)(ob.getY()), null);
 			}
 		}
 		
