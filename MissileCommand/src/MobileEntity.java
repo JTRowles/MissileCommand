@@ -5,10 +5,12 @@ public abstract class MobileEntity {
 
 	BufferedImage sprite;
 	double x, y;
+	boolean isDone;
 	
 	MobileEntity(double startX, double startY) {
 		x = startX;
 		y = startY;
+		isDone = false;
 	}
 	public double getX() {
 		return x;
@@ -18,14 +20,18 @@ public abstract class MobileEntity {
 		return y;
 	}
 	
-	abstract public void updatePos();
+	public boolean getIsDone() {
+		return isDone;
+	}
 	
-	public void setSprite(String path) {
-		try {
-			sprite = ImageIO.read(new File(path));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void setIsDone(boolean input) {
+		isDone = input;
+	}
+	
+	abstract public void update();
+	
+	public void setSprite(BufferedImage img) {
+		sprite = img;
 	}
 	
 	public BufferedImage getSprite() {
