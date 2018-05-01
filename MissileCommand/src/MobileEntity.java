@@ -4,41 +4,34 @@ import java.io.*;
 public abstract class MobileEntity {
 
 	BufferedImage sprite;
-	int x, y;
-	int xVel, yVel;
+	double x, y;
+	boolean isDone;
 	
-	MobileEntity(int startX, int startY, int xVelocity, int yVelocity) {
+	MobileEntity(double startX, double startY) {
 		x = startX;
 		y = startY;
-		xVel = xVelocity;
-		yVel = yVelocity;
+		isDone = false;
 	}
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 	
-	public int getXVel() {
-		return xVel;
+	public boolean getIsDone() {
+		return isDone;
 	}
 	
-	public int getYVel() {
-		return yVel;
+	public void setIsDone(boolean input) {
+		isDone = input;
 	}
 	
-	public void updatePos() {
-		x = x + xVel;
-		y = y + yVel;
-	}
-	public void setSprite(String path) {
-		try {
-			sprite = ImageIO.read(new File(path));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	abstract public void update();
+	
+	public void setSprite(BufferedImage img) {
+		sprite = img;
 	}
 	
 	public BufferedImage getSprite() {
