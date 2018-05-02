@@ -24,10 +24,10 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	
 	MissileCommand(){
 		try {
-			 backGround = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
-			 title = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
-			 crosshair = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Crosshair.png"));
-			 building = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Building.png"));
+			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
+			 title = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
+			 crosshair = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\Crosshair.png"));
+			 building = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\Building.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -56,25 +56,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (inRound) {
-			if(x < 449){
-				state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
-			}else if(x < 1115){
-				state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
-			}else{
-				state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
-			}
-		} else {
-			if (e.getX() >= 510 && e.getX() <= 1106 && e.getY() >= 510 && e.getY() <= 808) {
-				state = new GameState();
-				state.startLevel();
-				update.addActionListener(new updater());
-				update.start();
-				inRound = true;
-			}
-		}
-	}
+	public void mouseClicked(MouseEvent e) {}
 	
 	class updater implements ActionListener {
 
@@ -130,9 +112,9 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 						} else if (((EnemyMissile)(ob)).getDestIndex() == 3) {
 							state.destroyBuilding(2);
 						} else if (((EnemyMissile)(ob)).getDestIndex() == 4) {
-							state.destroyBuilding(3);
-						} else if (((EnemyMissile)(ob)).getDestIndex() == 5) {
 							state.destroyLauncher(1);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 5) {
+							state.destroyBuilding(3);
 						} else if (((EnemyMissile)(ob)).getDestIndex() == 6) {
 							state.destroyBuilding(4);
 						} else if (((EnemyMissile)(ob)).getDestIndex() == 7) {
@@ -165,7 +147,25 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	@Override
 	public void mousePressed(MouseEvent e) {}
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+		if (inRound) {
+			if(x < 449){
+				state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+			}else if(x < 1115){
+				state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+			}else{
+				state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+			}
+		} else {
+			if (e.getX() >= 510 && e.getX() <= 1106 && e.getY() >= 510 && e.getY() <= 808) {
+				state = new GameState();
+				state.startLevel();
+				update.addActionListener(new updater());
+				update.start();
+				inRound = true;
+			}
+		}
+	}
 
 
 }
