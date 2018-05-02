@@ -39,7 +39,7 @@ public class EnemyMissile extends MobileEntity {
 			destY = MissileCommand.base8y;
 		}
 		try {
-			setSprite(ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\rock.png")));
+			setSprite(ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\rock.png")));
 		} catch (IOException e) {
 			System.out.println("Could not load enemy missile sprite");
 		}
