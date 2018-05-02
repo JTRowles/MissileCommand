@@ -6,7 +6,16 @@ import javax.imageio.*;
 import java.io.*;
 public class MissileCommand extends JPanel implements MouseListener, MouseMotionListener {
 	
-	BufferedImage backGround, title, crosshair;
+	public static final int base0x = 113, base0y = 611;
+	public static final int base1x = 332, base1y = 688;
+	public static final int base2x = 465, base2y = 687;
+	public static final int base3x = 609, base3y = 686;
+	public static final int base4x = 784, base4y = 600;
+	public static final int base5x = 985, base5y = 692;
+	public static final int base6x = 1125, base6y = 691;
+	public static final int base7x = 1252, base7y = 690;
+	public static final int base8x = 1445, base8y = 606;
+	BufferedImage backGround, title, crosshair, building;
 	JFrame frame = new JFrame("Gay Command");
 	Timer update;
 	GameState state;
@@ -18,6 +27,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			 backGround = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
 			 title = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
 			 crosshair = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Crosshair.png"));
+			 building = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Building.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -43,19 +53,17 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	}
 	public static void main(String[] args){
 		new MissileCommand();
-	}
+		}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 		if (inRound) {
-			state.getMobs().add(new Explosion(e.getX(), e.getY()));
-			if(x < 533){
-
-			}else if(x < 1066){
-
+			if(x < 449){
+				state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+			}else if(x < 1115){
+				state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
 			}else{
-
+				state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
 			}
 		} else {
 			if (e.getX() >= 510 && e.getX() <= 1106 && e.getY() >= 510 && e.getY() <= 808) {
@@ -75,19 +83,71 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		public void actionPerformed(ActionEvent e) {
 			frames++;
 			getGraphics().drawImage(backGround, 0, 0, null);
-
-			if (frames % 15 == 0) {
-				state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, 0));
+			if (state.buildingAlive(0)) {
+				getGraphics().drawImage(building, base1x - 35, base1y - 20, null);
+			}
+			if (state.buildingAlive(1)) {
+				getGraphics().drawImage(building, base2x - 30, base2y - 15, null);
+			}
+			if (state.buildingAlive(2)) {
+				getGraphics().drawImage(building, base3x - 33, base3y - 10, null);
+			}
+			if (state.buildingAlive(3)) {
+				getGraphics().drawImage(building, base5x - 30, base5y - 30, null);
+			}
+			if (state.buildingAlive(4)) {
+				getGraphics().drawImage(building, base6x - 33, base6y - 20, null);
+			}
+			if (state.buildingAlive(5)) {
+				getGraphics().drawImage(building, base7x - 30, base7y - 15, null);
+			}
+			if (frames % 60 == 0) {
+				state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, (int)(Math.random()*9)));
 			}
 			for (int i = 0; i < state.getMobs().size(); i++) {
 				MobileEntity ob = state.getMobs().get(i);
 				ob.update();
+				if (ob.getClass().equals(Explosion.class)) {
+					for (int j = 0; j < state.getMobs().size(); j++) {
+						MobileEntity mis = state.getMobs().get(j);
+						if (mis.getClass().equals(EnemyMissile.class) || mis.getClass().equals(FriendlyMissile.class)) {
+							if (((Explosion)(ob)).isInRadius(mis.getX(), mis.getY())) {
+								state.getMobs().remove(j);
+								state.getMobs().add(new Explosion(mis.getX(), mis.getY()));
+							}
+						}
+					}
+				}
 				getGraphics().drawImage(ob.getSprite(), (int)(ob.getX() - ob.getSprite().getWidth()/2), (int)(ob.getY() - ob.getSprite().getHeight()/2), null);
 				if (ob.getIsDone()) {
+					if (ob.getClass().equals(EnemyMissile.class)) {
+						if (((EnemyMissile)(ob)).getDestIndex() == 0) {
+							state.destroyLauncher(0);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 1) {
+							state.destroyBuilding(0);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 2) {
+							state.destroyBuilding(1);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 3) {
+							state.destroyBuilding(2);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 4) {
+							state.destroyBuilding(3);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 5) {
+							state.destroyLauncher(1);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 6) {
+							state.destroyBuilding(4);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 7) {
+							state.destroyBuilding(5);
+						} else if (((EnemyMissile)(ob)).getDestIndex() == 8) {
+							state.destroyLauncher(2);
+						}
+					}
+					if (ob.getClass().equals(FriendlyMissile.class)) {
+						state.getMobs().add(new Explosion(ob.getX(), ob.getY()));
+					}
 					state.getMobs().remove(i);
 				}
 			}
-			getGraphics().drawImage(crosshair, x-crosshair.getWidth()/2, y-crosshair.getHeight()/2, null);
+			getGraphics().drawImage(crosshair, x-crosshair.getWidth()/2, Math.min(590, y-crosshair.getHeight()/2), null);
 		}
 		
 	}

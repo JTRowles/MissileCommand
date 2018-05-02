@@ -20,6 +20,14 @@ public abstract class MobileEntity {
 		return y;
 	}
 	
+	public void setX(double input) {
+		x = input;
+	}
+	
+	public void setY(double input) {
+		y = input;
+	}
+	
 	public boolean getIsDone() {
 		return isDone;
 	}

@@ -28,6 +28,14 @@ public class GameState {
 		}
 	}
 	
+	public boolean buildingAlive(int index) {
+		return buildings[index];
+	}
+	
+	public int getMissiles(int index) {
+		return missilesLeft[index];
+	}
+	
 	public ArrayList<MobileEntity> getMobs() {
 		return mobs;
 	}
