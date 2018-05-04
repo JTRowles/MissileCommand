@@ -36,6 +36,10 @@ public class GameState {
 		return missilesLeft[index];
 	}
 	
+	public void launchMissile(int launcher) {
+		missilesLeft[launcher]--;
+	}
+	
 	public ArrayList<MobileEntity> getMobs() {
 		return mobs;
 	}

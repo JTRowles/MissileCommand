@@ -24,10 +24,10 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	
 	MissileCommand(){
 		try {
-			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
-			 title = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
-			 crosshair = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\Crosshair.png"));
-			 building = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\Building.png"));
+			 backGround = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
+			 title = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
+			 crosshair = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Crosshair.png"));
+			 building = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Building.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	}
 	public static void main(String[] args){
 		new MissileCommand();
-		}
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {}
@@ -83,7 +83,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			if (state.buildingAlive(5)) {
 				getGraphics().drawImage(building, base7x - 30, base7y - 15, null);
 			}
-			if (frames % 60 == 0) {
+			if (frames % (int)(Math.random()*90 + 30) == 0) {
 				state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, (int)(Math.random()*9)));
 			}
 			for (int i = 0; i < state.getMobs().size(); i++) {
@@ -150,11 +150,48 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	public void mouseReleased(MouseEvent e) {
 		if (inRound) {
 			if(x < 449){
-				state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+				if (state.getMissiles(0) > 0) {
+					state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+					state.launchMissile(0);
+				} else if (state.getMissiles(1) > 0) {
+					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+					state.launchMissile(1);
+				} else if (state.getMissiles(2) > 0) {
+					state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590,  e.getY())));
+					state.launchMissile(2);
+				}
 			}else if(x < 1115){
-				state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+				if (state.getMissiles(1) > 0) {
+					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+					state.launchMissile(1);
+				} else if (x <= base4x) {
+					if (state.getMissiles(0) > 0) {
+						state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+						state.launchMissile(0);
+					} else if (state.getMissiles(2) > 0) {
+						state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+						state.launchMissile(2);
+					}
+				} else if (x > base4x) {
+					if (state.getMissiles(2) > 0) {
+						state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+						state.launchMissile(2);
+					} else if (state.getMissiles(0) > 0) {
+						state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+						state.launchMissile(0);
+					}
+				}
 			}else{
-				state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+				if (state.getMissiles(2) > 0) {
+					state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+					state.launchMissile(2);
+				} else if (state.getMissiles(1) > 0) {
+					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+					state.launchMissile(1);
+				} else if (state.getMissiles(0) > 0) {
+					state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+					state.launchMissile(0);
+				}
 			}
 		} else {
 			if (e.getX() >= 510 && e.getX() <= 1106 && e.getY() >= 510 && e.getY() <= 808) {

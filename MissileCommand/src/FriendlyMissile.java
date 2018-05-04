@@ -23,7 +23,7 @@ public class FriendlyMissile extends MobileEntity {
 			setY(MissileCommand.base8y);
 		}
 		try {
-			setSprite(ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\friendlyRock.png")));
+			setSprite(ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\friendlyRock.png")));
 		} catch (IOException e) {
 			System.out.println("Could not load friendly missile sprite");
 		}
