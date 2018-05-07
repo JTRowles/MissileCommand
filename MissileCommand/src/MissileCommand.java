@@ -63,8 +63,14 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		long frames = 0;
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
 			frames++;
 			getGraphics().drawImage(backGround, 0, 0, null);
+			getGraphics().setFont(new Font(Font.DIALOG, Font.PLAIN, 24));
+			getGraphics().setColor(Color.WHITE);
+			getGraphics().drawString(Integer.toString(state.getMissiles(0)), base0x, base0y + 30);
+			getGraphics().drawString(Integer.toString(state.getMissiles(1)), base4x, base4y + 30);
+			getGraphics().drawString(Integer.toString(state.getMissiles(2)), base8x, base8y + 30);
 			if (state.buildingAlive(0)) {
 				getGraphics().drawImage(building, base1x - 35, base1y - 20, null);
 			}
