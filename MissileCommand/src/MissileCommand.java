@@ -92,7 +92,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			if (state.buildingAlive(5)) {
 				getGraphics().drawImage(building, base7x - 30, base7y - 15, null);
 			}
-			if (frames % (int)(Math.random()*90 + 30) == 0) {
+			if (frames % (int)(Math.random()*120) == 0) {
 				state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, (int)(Math.random()*9)));
 			}
 			for (int i = 0; i < state.getMobs().size(); i++) {
