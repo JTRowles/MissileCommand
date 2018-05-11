@@ -17,6 +17,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	public static final int base8x = 1445, base8y = 606;
 	BufferedImage backGround, title, crosshair, building;
 	JFrame frame = new JFrame("Gay Command");
+	JLabel launcher1, launcher2, launcher3, scorelabel;
 	Timer update;
 	GameState state;
 	int x, y;
@@ -31,6 +32,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		launcher1 = new JLabel();
 		inRound = false;
 		frame.setContentPane(this);
 		frame.setSize(600, 600);
@@ -67,7 +69,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			frames++;
 			getGraphics().drawImage(backGround, 0, 0, null);
 			getGraphics().setFont(new Font(Font.DIALOG, Font.PLAIN, 24));
-			getGraphics().setColor(Color.WHITE);
+			getGraphics().setColor(Color.YELLOW);
 			getGraphics().drawString(Integer.toString(state.getMissiles(0)), base0x, base0y + 30);
 			getGraphics().drawString(Integer.toString(state.getMissiles(1)), base4x, base4y + 30);
 			getGraphics().drawString(Integer.toString(state.getMissiles(2)), base8x, base8y + 30);
