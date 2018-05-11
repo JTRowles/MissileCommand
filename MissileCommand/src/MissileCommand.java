@@ -5,7 +5,7 @@ import java.awt.image.*;
 import javax.imageio.*;
 import java.io.*;
 public class MissileCommand extends JPanel implements MouseListener, MouseMotionListener {
-	
+
 	public static final int base0x = 113, base0y = 611;
 	public static final int base1x = 332, base1y = 688;
 	public static final int base2x = 465, base2y = 687;
@@ -15,14 +15,14 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	public static final int base6x = 1125, base6y = 691;
 	public static final int base7x = 1252, base7y = 690;
 	public static final int base8x = 1445, base8y = 606;
+	
 	BufferedImage backGround, title, crosshair, building;
 	JFrame frame = new JFrame("Gay Command");
-	JLabel launcher1, launcher2, launcher3, scorelabel;
 	Timer update;
 	GameState state;
 	int x, y;
 	boolean inRound;
-	
+
 	MissileCommand(){
 		try {
 			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
@@ -32,7 +32,6 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		launcher1 = new JLabel();
 		inRound = false;
 		frame.setContentPane(this);
 		frame.setSize(600, 600);
@@ -47,7 +46,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		update.stop();
 		System.out.println(this.getSize());
 	}
-	                                                                                                                     
+
 	public void paintComponent(Graphics g) {
 		if (!inRound) {
 			g.drawImage(title, 0, 0, null);
@@ -61,6 +60,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	public void mouseClicked(MouseEvent e) {}
 	
 	class updater implements ActionListener {
+		Graphics g = getGraphics();
 
 		long frames = 0;
 		@Override
@@ -69,10 +69,11 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			frames++;
 			getGraphics().drawImage(backGround, 0, 0, null);
 			getGraphics().setFont(new Font(Font.DIALOG, Font.PLAIN, 24));
-			getGraphics().setColor(Color.YELLOW);
+			getGraphics().setColor(Color.WHITE);
 			getGraphics().drawString(Integer.toString(state.getMissiles(0)), base0x, base0y + 30);
 			getGraphics().drawString(Integer.toString(state.getMissiles(1)), base4x, base4y + 30);
 			getGraphics().drawString(Integer.toString(state.getMissiles(2)), base8x, base8y + 30);
+
 			if (state.buildingAlive(0)) {
 				getGraphics().drawImage(building, base1x - 35, base1y - 20, null);
 			}
@@ -216,6 +217,4 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			}
 		}
 	}
-
-
 }
