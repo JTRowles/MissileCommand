@@ -137,7 +137,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 					state.getMobs().remove(i);
 				}
 			}
-			getGraphics().drawImage(crosshair, x-crosshair.getWidth()/2, Math.min(590, y-crosshair.getHeight()/2), null);
+			getGraphics().drawImage(crosshair, x-crosshair.getWidth()/2, Math.min(540, y-crosshair.getHeight()/2), null);
 		}
 		
 	}
@@ -145,6 +145,11 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	public void mouseMoved(MouseEvent e) {
 		x = e.getX();
 		y = e.getY();
+//		if (inRound) {
+//			state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(540, e.getY())));
+//			state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(540, e.getY())));
+//			state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(540, e.getY())));
+//		}
 	}
 	@Override
 	public void mouseDragged(MouseEvent arg0) {}
@@ -159,45 +164,45 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		if (inRound) {
 			if(x < 449){
 				if (state.getMissiles(0) > 0) {
-					state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+					state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(540, e.getY())));
 					state.launchMissile(0);
 				} else if (state.getMissiles(1) > 0) {
-					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(540, e.getY())));
 					state.launchMissile(1);
 				} else if (state.getMissiles(2) > 0) {
-					state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590,  e.getY())));
+					state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(540,  e.getY())));
 					state.launchMissile(2);
 				}
 			}else if(x < 1115){
 				if (state.getMissiles(1) > 0) {
-					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(540, e.getY())));
 					state.launchMissile(1);
 				} else if (x <= base4x) {
 					if (state.getMissiles(0) > 0) {
-						state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+						state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(540, e.getY())));
 						state.launchMissile(0);
 					} else if (state.getMissiles(2) > 0) {
-						state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+						state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(540, e.getY())));
 						state.launchMissile(2);
 					}
 				} else if (x > base4x) {
 					if (state.getMissiles(2) > 0) {
-						state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+						state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(540, e.getY())));
 						state.launchMissile(2);
 					} else if (state.getMissiles(0) > 0) {
-						state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+						state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(540, e.getY())));
 						state.launchMissile(0);
 					}
 				}
 			}else{
 				if (state.getMissiles(2) > 0) {
-					state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(590, e.getY())));
+					state.getMobs().add(new FriendlyMissile(2, e.getX(), Math.min(540, e.getY())));
 					state.launchMissile(2);
 				} else if (state.getMissiles(1) > 0) {
-					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(590, e.getY())));
+					state.getMobs().add(new FriendlyMissile(1, e.getX(), Math.min(540, e.getY())));
 					state.launchMissile(1);
 				} else if (state.getMissiles(0) > 0) {
-					state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(590, e.getY())));
+					state.getMobs().add(new FriendlyMissile(0, e.getX(), Math.min(540, e.getY())));
 					state.launchMissile(0);
 				}
 			}
