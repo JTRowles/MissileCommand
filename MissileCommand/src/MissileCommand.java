@@ -62,6 +62,27 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 				g.drawString("ROUND OVER", 600, 300);
 				g.setFont(new Font(Font.DIALOG, Font.PLAIN, 30));
 				g.drawString("Missiles left: " + (state.getMissiles(0) + state.getMissiles(1) + state.getMissiles(2)) + " x 50 = " + (50*(state.getMissiles(0) + state.getMissiles(1) + state.getMissiles(2))), 500, 400);
+				int buildings = 0;
+				if (state.buildingAlive(0)) {
+					buildings++;
+				}
+				if (state.buildingAlive(1)) {
+					buildings++;
+				}
+				if (state.buildingAlive(2)) {
+					buildings++;
+				}
+				if (state.buildingAlive(3)) {
+					buildings++;
+				}
+				if (state.buildingAlive(4)) {
+					buildings++;
+				}
+				if (state.buildingAlive(5)) {
+					buildings++;
+				}
+				g.drawString("Buildings left: " + buildings + " x 300 = " + buildings*300, 500, 450);
+				g.drawString("Total Score: " + state.getScore(), 500,  400);
 			}
 		}
 	}
