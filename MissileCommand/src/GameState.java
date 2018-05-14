@@ -23,7 +23,7 @@ public class GameState {
 	public void startLevel() {
 		mobs.clear();
 		level++;
-		missilesInRound = 30 + 5*level;
+		missilesInRound = 5*level;
 		missilesLeft[0] = START_MISSILES;
 		missilesLeft[1] = START_MISSILES;
 		missilesLeft[2] = START_MISSILES;
