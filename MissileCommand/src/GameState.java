@@ -5,6 +5,7 @@ public class GameState {
 	boolean[] buildings;
 	int[] missilesLeft;
 	public final int START_MISSILES = 30;
+	int missilesInRound;
 	private int level;
 	public int score;
 	
@@ -22,6 +23,7 @@ public class GameState {
 	public void startLevel() {
 		mobs.clear();
 		level++;
+		missilesInRound = 30 + 5*level;
 		missilesLeft[0] = START_MISSILES;
 		missilesLeft[1] = START_MISSILES;
 		missilesLeft[2] = START_MISSILES;
@@ -57,6 +59,15 @@ public class GameState {
 	
 	public void launchMissile(int launcher) {
 		missilesLeft[launcher]--;
+	}
+	
+	public int getMissilesInRound() {
+		return missilesInRound;
+	}
+	
+	public void createEnemyMissile() {
+		missilesInRound--;
+		mobs.add(new EnemyMissile((int)(Math.random()*1600), 0, (int)(Math.random()*9)));
 	}
 	
 	public ArrayList<MobileEntity> getMobs() {

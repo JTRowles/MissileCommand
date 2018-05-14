@@ -17,6 +17,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	public static final int base8x = 1445, base8y = 606;
 	
 	BufferedImage backGround, title, crosshair, building;
+	JPanel roundOver;
 	JFrame frame = new JFrame("Gay Command");
 	Timer update;
 	GameState state;
@@ -92,8 +93,8 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			if (state.buildingAlive(5)) {
 				getGraphics().drawImage(building, base7x - 30, base7y - 15, null);
 			}
-			if (frames % (int)(Math.random()*120) == 0) {
-				state.getMobs().add(new EnemyMissile((int)(Math.random()*1600), 0, (int)(Math.random()*9)));
+			if (frames % (int)(Math.random()*119 + 1) == 0 && state.getMissilesInRound() > 0) {
+				state.createEnemyMissile();
 			}
 			for (int i = 0; i < state.getMobs().size(); i++) {
 				MobileEntity ob = state.getMobs().get(i);
