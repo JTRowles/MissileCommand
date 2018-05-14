@@ -17,14 +17,17 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 	public static final int base8x = 1445, base8y = 606;
 	
 	BufferedImage backGround, title, crosshair, building;
+	JLabel scoreLabel;
 	JPanel roundOver;
 	JFrame frame = new JFrame("Gay Command");
+	boolean titleScreen;
 	Timer update;
 	GameState state;
 	int x, y;
 	boolean inRound;
 
 	MissileCommand(){
+		titleScreen = true;
 		try {
 			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
 			 title = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
@@ -68,8 +71,9 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		public void actionPerformed(ActionEvent e) {
 			
 			frames++;
+			
 			getGraphics().drawImage(backGround, 0, 0, null);
-			getGraphics().setFont(new Font(Font.DIALOG, Font.PLAIN, 24));
+			getGraphics().setFont(new Font(Font.DIALOG, Font.PLAIN, 30));
 			getGraphics().setColor(Color.WHITE);
 			getGraphics().drawString(Integer.toString(state.getMissiles(0)), base0x, base0y + 30);
 			getGraphics().drawString(Integer.toString(state.getMissiles(1)), base4x, base4y + 30);
@@ -104,6 +108,9 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 						MobileEntity mis = state.getMobs().get(j);
 						if (mis.getClass().equals(EnemyMissile.class) || mis.getClass().equals(FriendlyMissile.class)) {
 							if (((Explosion)(ob)).isInRadius(mis.getX(), mis.getY())) {
+								if (state.getMobs().remove(j).getClass().equals(EnemyMissile.class)) {
+									state.addScore(100);
+								}
 								state.getMobs().remove(j);
 								state.getMobs().add(new Explosion(mis.getX(), mis.getY()));
 							}
@@ -139,6 +146,7 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 					state.getMobs().remove(i);
 				}
 			}
+			scoreLabel.setText("Score: " + state.getScore());
 			getGraphics().drawImage(crosshair, x-crosshair.getWidth()/2, Math.min(540, y-crosshair.getHeight()/2), null);
 		}
 		
@@ -210,6 +218,13 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 			}
 		} else {
 			if (e.getX() >= 510 && e.getX() <= 1106 && e.getY() >= 510 && e.getY() <= 808) {
+				titleScreen = false;
+				scoreLabel = new JLabel("Score: 0");
+				scoreLabel.setForeground(Color.WHITE);
+				scoreLabel.setFont(new Font(Font.DIALOG, Font.PLAIN, 30));
+				this.add(scoreLabel);
+				scoreLabel.setLocation(1500, 30);
+				scoreLabel.setVisible(true);
 				state = new GameState();
 				state.startLevel();
 				update.addActionListener(new updater());
