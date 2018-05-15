@@ -29,10 +29,10 @@ public class MissileCommand extends JPanel implements MouseListener, MouseMotion
 		gameOver = false;
 		titleScreen = true;
 		try {
-			 backGround = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
-			 title = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
-			 crosshair = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Crosshair.png"));
-			 building = ImageIO.read(new File("C:\\Users\\reece\\git\\GayCommand\\MissileCommand\\Resources\\Building.png"));
+			 backGround = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\BET.png"));
+			 title = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\commo.png"));
+			 crosshair = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\Crosshair.png"));
+			 building = ImageIO.read(new File("Z:\\git\\GayCommand\\MissileCommand\\Resources\\Building.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
